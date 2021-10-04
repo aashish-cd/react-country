@@ -2,15 +2,10 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 function App() {
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const [name, setName] = useState('nep');
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-    fetchData();
-
-    return () => {};
-  }, [name]);
   const fetchData = async () => {
     // setLoading(true);
     const response = await axios.get(
@@ -27,15 +22,20 @@ function App() {
     e.preventDefault();
     setName(e.target.value);
   };
+  useEffect(() => {
+    fetchData();
 
-  if (loading) {
-    return (
-      <div>
-        <h2>Loading... </h2>
-        <div className='underline'></div>
-      </div>
-    );
-  }
+    return () => {};
+  }, [name]);
+
+  // if (loading) {
+  //   return (
+  //     <div>
+  //       <h2>Loading... </h2>
+  //       <div className='underline'></div>
+  //     </div>
+  //   );
+  // }
 
   return (
     <section className='section'>
