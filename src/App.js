@@ -24,9 +24,8 @@ function App() {
   };
   useEffect(() => {
     fetchData();
-
     return () => {};
-  }, [name]);
+  });
 
   // if (loading) {
   //   return (
