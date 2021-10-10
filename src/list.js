@@ -38,7 +38,7 @@ const List = () => {
     <section className='section'>
       <form>
         <input
-          className='form-input'
+          className='form-input fixed-top'
           type='text'
           value={name}
           onChange={(e) => handleName(e)}
@@ -50,7 +50,7 @@ const List = () => {
           return <h1 key={index}>{ss.name.common}</h1>;
         })}
       </div> */}
-      <div className='container displey-flex flex-row bg-light'>
+      <div>
         {data.map((ss, index) => {
           return (
             <article className='card'>
@@ -60,22 +60,11 @@ const List = () => {
               <div className='card-content'>
                 <p className='category category__01'>{ss.name.common}</p>
                 {/* <h2>{ss.name.common}</h2> */}
-                <p>
-                  TUX re-inventing the wheel, and move the needle. Feature creep
-                  dogpile that but diversify kpis but market-facing.
-                </p>
+                <br />
+                <h2>{ss.name.official}</h2>
+                <br />
+                <p>{}</p>
               </div>
-              <footer>
-                <div className='post-meta'>
-                  <span className='timestamp'>
-                    <i className='fa fa-clock-o'></i> 6 mins ago
-                  </span>
-                  <span className='comments'>
-                    <i className='fa fa-comments'></i>
-                    <a href='#'> 14 comments</a>
-                  </span>
-                </div>
-              </footer>
             </article>
           );
         })}
