@@ -20,13 +20,14 @@ const List = () => {
     );
     // console.log(response.data);
     setData(response.data);
-    console.log(data);
+    // console.log(data);
     // setLoading(false);
   };
 
   //handle search name
   const handleName = (e) => {
     e.preventDefault();
+
     setName(e.target.value);
   };
   useEffect(() => {
@@ -53,7 +54,7 @@ const List = () => {
       <div>
         {data.map((ss, index) => {
           return (
-            <article className='card'>
+            <article className='card' key={index}>
               <picture className='thumbnail'>
                 <img className='category__01' src={ss.flags.png} alt='' />
               </picture>
