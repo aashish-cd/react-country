@@ -1,24 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import * as https from 'https';
+// import * as https from 'https';
 import './list.css';
 
 const List = () => {
   // const [loading, setLoading] = useState(false);
+  const [newData, setNewData] = useState([]);
   const [name, setName] = useState('nep');
   const [data, setData] = useState([]);
 
   const fetchData = async () => {
     // setLoading(true);
-    const response = await axios.get(
-      `https://restcountries.com/v3.1/name/${name}`,
-      {
-        httpsAgent: new https.Agent({
-          rejectUnauthorized: false,
-        }),
-      }
-    );
+    const response = await axios.get(`https://restcountries.com/v3.1/all`);
     // console.log(response.data);
+    setNewData(response.data);
     setData(response.data);
     // console.log(data);
     // setLoading(false);
@@ -29,11 +24,16 @@ const List = () => {
     e.preventDefault();
 
     setName(e.target.value);
+    setNewData(
+      data.filter((ss) =>
+        ss.name.official.toLowerCase().includes(name.toLowerCase())
+      )
+    );
+    console.log(newData);
   };
   useEffect(() => {
     fetchData();
-    return () => {};
-  });
+  }, []);
 
   return (
     <section className='section'>
@@ -46,13 +46,9 @@ const List = () => {
           placeholder='Search for Country'
         />
       </form>
-      {/* <div className='container'>
-        {data.map((ss, index) => {
-          return <h1 key={index}>{ss.name.common}</h1>;
-        })}
-      </div> */}
+
       <div>
-        {data.map((ss, index) => {
+        {newData.map((ss, index) => {
           return (
             <article className='card' key={index}>
               <picture className='thumbnail'>
