@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 // import * as https from 'https';
 import './list.css';
 import country from './data.json';
@@ -69,7 +68,10 @@ const List = () => {
                 <p>languages[]</p>
                 <p>{ss.landlocked ? 'landlocked' : 'not a landlocked'}</p>
                 <p>Area: {ss.area}</p>
-                <p>maps . googleMaps openStreetMaps</p>
+                <p>
+                  <a href={ss.maps.googleMaps}>Google Map</a>{' '}
+                  <a href={ss.maps.openStreetMaps}>Open street Map</a>
+                </p>
                 <p>Population: {ss.population}</p>
                 <p>Timezones: {ss.timezones}</p>
               </div>
