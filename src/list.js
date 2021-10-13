@@ -56,7 +56,8 @@ const List = () => {
                 <img class='flag' src={ss.flags.svg} alt='nepal' />
               </div>
               <div class='list-container'>
-                <h2>{ss.name.common}</h2>
+                <h2>CommonName: {ss.name?.common}</h2>
+                <h4>Official Name: {ss.name?.official}</h4>
                 <p>{ss.capital}</p>
                 <p> {ss.independent ? 'independent' : 'dependent'}</p>
                 <p>Unmember : {ss.unMember ? 'yes' : 'no'}</p>
@@ -64,8 +65,11 @@ const List = () => {
                   Currency: {ss.currencies?.name}
                   symbol: {ss.currencies?.symbol}
                 </p>
-                <p>region subregion</p>
-                <p>languages[]</p>
+                <p>
+                  Region : {ss.region}
+                  Sub-Region : {ss.subregion}
+                </p>
+                <p>Languages: {ss.languages[0]}</p>
                 <p>{ss.landlocked ? 'landlocked' : 'not a landlocked'}</p>
                 <p>Area: {ss.area}</p>
                 <p>
