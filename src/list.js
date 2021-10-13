@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 // import * as https from 'https';
 import './list.css';
+import country from './data.json';
 
 const List = () => {
   // const [loading, setLoading] = useState(false);
@@ -9,20 +10,21 @@ const List = () => {
   const [name, setName] = useState('nep');
   const [data, setData] = useState([]);
 
-  const fetchData = async () => {
-    // setLoading(true);
-    const response = await axios.get(`https://restcountries.com/v3.1/all`);
-    // console.log(response.data);
-    setNewData(response.data);
-    setData(response.data);
-    // console.log(data);
-    // setLoading(false);
-  };
+  // const fetchData = async () => {
+  //   // setLoading(true);
+  //   const response = await axios.get(``);
+  //   // console.log(response.data);
+  //   setNewData(response.data);
+  //   setData(response.data);
+  //   // console.log(data);
+  //   // setLoading(false);
+  // };
 
   //handle search name
   const handleName = (e) => {
     e.preventDefault();
-
+    setData(country);
+    console.log(data);
     setName(e.target.value);
     setNewData(
       data.filter((ss) =>
@@ -31,9 +33,9 @@ const List = () => {
     );
     console.log(newData);
   };
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
   return (
     <section className='section'>
@@ -47,22 +49,31 @@ const List = () => {
         />
       </form>
 
-      <div>
+      <div className='container'>
         {newData.map((ss, index) => {
           return (
-            <article className='card' key={index}>
-              <picture className='thumbnail'>
-                <img className='category__01' src={ss.flags.png} alt='' />
-              </picture>
-              <div className='card-content'>
-                <p className='category category__01'>{ss.name.common}</p>
-                {/* <h2>{ss.name.common}</h2> */}
-                <br />
-                <h2>{ss.name.official}</h2>
-                <br />
-                <p>{}</p>
+            <div class='single'>
+              <div class='image-container'>
+                <img class='flag' src={ss.flags.svg} alt='nepal' />
               </div>
-            </article>
+              <div class='list-container'>
+                <h2>{ss.name.common}</h2>
+                <p>{ss.capital}</p>
+                <p> {ss.independent ? 'independent' : 'dependent'}</p>
+                <p>Unmember : {ss.unMember ? 'yes' : 'no'}</p>
+                <p>
+                  Currency: {ss.currencies?.name}
+                  symbol: {ss.currencies?.symbol}
+                </p>
+                <p>region subregion</p>
+                <p>languages[]</p>
+                <p>{ss.landlocked ? 'landlocked' : 'not a landlocked'}</p>
+                <p>Area: {ss.area}</p>
+                <p>maps . googleMaps openStreetMaps</p>
+                <p>Population: {ss.population}</p>
+                <p>Timezones: {ss.timezones}</p>
+              </div>
+            </div>
           );
         })}
       </div>
